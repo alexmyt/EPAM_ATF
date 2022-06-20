@@ -1,0 +1,7 @@
+{
+  "name": "amm_EMAP_ATF",
+  "version": "0.0.1",
+  "devDependencies": {
+    "fs-extra": "^10.1.0"
+  }
+}

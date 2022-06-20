@@ -1,0 +1,1 @@
+# Practical jobs for cource *Automated testing foundation* by EPAM

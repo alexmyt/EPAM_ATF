@@ -1,0 +1,21 @@
+{
+  "name": "webdriverlearning",
+  "version": "1.0.0",
+  "description": "Learning Selenium WebDriver with EPAM course",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Alexey Mytsykov",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  },
+  "dependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "selenium-webdriver": "^4.3.1"
+  }
+}

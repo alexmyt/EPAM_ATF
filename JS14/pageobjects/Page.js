@@ -1,4 +1,5 @@
 const { Builder, By, until } = require('selenium-webdriver');
+const { Options } = require('selenium-webdriver/chrome');
 
 class Page {
   get title() { return this.driver.getTitle(); }
@@ -6,7 +7,10 @@ class Page {
   get url() { return this.driver.getCurrentUrl(); }
 
   async open(url) {
-    this.driver = new Builder().forBrowser('chrome').build();
+    const options = new Options();
+    // options.headless = true;
+    options.addArguments('--incognito');
+    this.driver = new Builder().forBrowser('chrome').setChromeOptions(options).build();
     return this.driver.get(url);
   }
 

@@ -45,8 +45,6 @@ describe('Hurt me plenty', function () {
     const estimateItems = await testPage.getEstimateItems();
     estimateText = estimateItems.join('|');
 
-    console.log(estimateText);
-
     expect(estimateText, 'Required VM class').to.include(`Provisioning model: ${requiredVMClass}`);
     expect(estimateText, 'Required Instance type').to.include(`Instance type: ${requiredInstanceType}`);
     expect(estimateText, 'Required SSD').to.include(`Local SSD: ${requiredSSD}`);

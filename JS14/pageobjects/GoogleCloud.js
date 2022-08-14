@@ -7,8 +7,8 @@ const Page = require('./Page');
 class GoogleCloud extends Page {
   baseURL = 'https://cloud.google.com/';
 
-  async open(url = this.baseURL) {
-    super.open(url);
+  async open(url = this.baseURL, driver = undefined) {
+    await super.open(url, driver);
   }
 
   async quit(wait) {
@@ -80,7 +80,8 @@ class GoogleCloud extends Page {
     const selectMenuId = await elementMdSelect.getAttribute('aria-owns');
     const elementSelectMenu = await this.driver.findElement(By.id(selectMenuId));
 
-    // await this.driver.executeScript('arguments[0].scrollIntoView({block: "center"})', elementSelectMenu);
+    // await this.driver.executeScript('arguments[0]
+    // .scrollIntoView({block: "center"})', elementSelectMenu);
 
     const elementSelectInput = await this.driver
       .findElements(By.xpath(`//*[@id="${selectMenuId}"]//md-select-header/md-input-container/input`));
@@ -136,6 +137,30 @@ class GoogleCloud extends Page {
       return parseFloat(cost[1].replaceAll(',', ''));
     }
     return 0;
+  }
+
+  async sendEstimateToMail(address) {
+    await this.driver
+      .findElement(By.xpath('//button[@id="email_quote"]'))
+      .click();
+
+    const elementLocator = By.xpath('//form[@name="emailForm"]//md-input-container/descendant::label[normalize-space(text())="Email"]/../input');
+
+    await this.driver
+      .wait(until.elementLocated(elementLocator));
+
+    let element = await this.driver
+      .findElement(elementLocator);
+
+    await element.sendKeys(address);
+
+    element = await this.driver
+      .findElement(By.xpath('//form[@name="emailForm"]//button[normalize-space(text())="Send Email"]'));
+
+    await this.driver
+      .wait(until.elementIsEnabled(element));
+
+    return element.click();
   }
 }
 
